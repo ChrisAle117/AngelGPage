@@ -51,15 +51,15 @@ export function GalleryCinematic({ darkMode }: GalleryCinematicProps) {
 
     const autoScroll = () => {
       scrollPosition += scrollSpeed;
-      
+
       // Get the width of one set of images
       const contentWidth = scrollContainer.scrollWidth / 2;
-      
+
       // Reset when we've scrolled past the first set
       if (scrollPosition >= contentWidth) {
         scrollPosition = 0;
       }
-      
+
       scrollContainer.scrollLeft = scrollPosition;
       animationFrameId = requestAnimationFrame(autoScroll);
     };
@@ -95,7 +95,7 @@ export function GalleryCinematic({ darkMode }: GalleryCinematicProps) {
 
         {/* Infinite scroll gallery */}
         <div className="relative">
-          <div 
+          <div
             ref={scrollRef}
             className="overflow-x-hidden pb-8 hide-scrollbar"
           >
@@ -121,16 +121,16 @@ export function GalleryCinematic({ darkMode }: GalleryCinematicProps) {
                         mixBlendMode: darkMode ? 'lighten' : 'darken',
                       }}
                     />
-                    
+
                     {/* Film grain overlay */}
-                    <div 
+                    <div
                       className="absolute inset-0 pointer-events-none opacity-30 group-hover:opacity-10 transition-opacity duration-500"
                       style={{
                         backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='6.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
                       }}
                     />
                   </div>
-                  
+
                   <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <div className="text-sm tracking-[0.2em] font-bold mb-2 text-white">
                       {photo.title}
@@ -139,7 +139,7 @@ export function GalleryCinematic({ darkMode }: GalleryCinematicProps) {
                       {photo.description}
                     </div>
                   </div>
-                  
+
                   {/* Frame corners */}
                   <div className="absolute top-0 left-0 w-8 h-8 border-l-2 border-t-2 border-current opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
                   <div className="absolute top-0 right-0 w-8 h-8 border-r-2 border-t-2 border-current opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
@@ -149,9 +149,9 @@ export function GalleryCinematic({ darkMode }: GalleryCinematicProps) {
               ))}
             </div>
           </div>
-          
+
           <div className="mt-4 text-center text-xs tracking-[0.2em] opacity-40">
-            LOOP INFINITO / AUTO-SCROLL
+            Mira nuestros trabajos
           </div>
         </div>
       </div>

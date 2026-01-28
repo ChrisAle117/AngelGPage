@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react';
 import { Moon, Sun, Instagram } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 
 interface NavigationProps {
   darkMode: boolean;
@@ -6,13 +8,43 @@ interface NavigationProps {
 }
 
 export function Navigation({ darkMode, setDarkMode }: NavigationProps) {
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const controlNavbar = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY < 10) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY) {
+        setIsVisible(false);
+      } else if (currentScrollY < lastScrollY) {
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', controlNavbar);
+
+    return () => {
+      window.removeEventListener('scroll', controlNavbar);
+    };
+  }, [lastScrollY]);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 p-4 md:p-8">
+    <motion.nav
+      initial={{ y: 0 }}
+      animate={{ y: isVisible ? 0 : -100 }}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
+      className="fixed top-0 left-0 right-0 z-50 p-4 md:p-8"
+    >
       <div className="flex items-center justify-between max-w-7xl mx-auto">
         <div className="flex items-center gap-3">
           <button
@@ -91,6 +123,7 @@ export function Navigation({ darkMode, setDarkMode }: NavigationProps) {
           </button>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 }
+

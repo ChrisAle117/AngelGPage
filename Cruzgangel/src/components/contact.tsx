@@ -39,7 +39,33 @@ export function Contact({ darkMode }: ContactProps) {
     return () => window.removeEventListener('resize', resizeCanvas);
   }, [darkMode]);
 
-  const startDrawing = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  // Helper function to get coordinates from mouse or touch event
+  const getCoordinates = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return null;
+
+    const rect = canvas.getBoundingClientRect();
+
+    if ('touches' in e) {
+      // Touch event
+      if (e.touches.length > 0) {
+        return {
+          x: e.touches[0].clientX - rect.left,
+          y: e.touches[0].clientY - rect.top
+        };
+      }
+      return null;
+    } else {
+      // Mouse event
+      return {
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top
+      };
+    }
+  };
+
+  const startDrawing = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
+    e.preventDefault();
     setIsDrawing(true);
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -47,12 +73,15 @@ export function Contact({ darkMode }: ContactProps) {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const rect = canvas.getBoundingClientRect();
+    const coords = getCoordinates(e);
+    if (!coords) return;
+
     ctx.beginPath();
-    ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+    ctx.moveTo(coords.x, coords.y);
   };
 
-  const draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  const draw = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
+    e.preventDefault();
     if (!isDrawing) return;
 
     const canvas = canvasRef.current;
@@ -61,8 +90,10 @@ export function Contact({ darkMode }: ContactProps) {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const rect = canvas.getBoundingClientRect();
-    ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+    const coords = getCoordinates(e);
+    if (!coords) return;
+
+    ctx.lineTo(coords.x, coords.y);
     ctx.stroke();
   };
 
@@ -134,10 +165,14 @@ export function Contact({ darkMode }: ContactProps) {
                 onMouseMove={draw}
                 onMouseUp={stopDrawing}
                 onMouseLeave={stopDrawing}
+                onTouchStart={startDrawing}
+                onTouchMove={draw}
+                onTouchEnd={stopDrawing}
                 className="relative z-10 w-full h-80 md:h-96"
                 style={{
                   cursor: 'crosshair',
-                  mixBlendMode: 'normal'
+                  mixBlendMode: 'normal',
+                  touchAction: 'none'
                 }}
                 data-hover
               />

@@ -63,13 +63,14 @@ export function CustomCursor({ darkMode }: CustomCursorProps) {
             width: isHovering ? '48px' : '24px',
             height: isHovering ? '48px' : '24px',
             transform: 'translate(-50%, -50%)',
-            mixBlendMode: 'difference',
+            mixBlendMode: darkMode ? 'difference' : 'normal',
             backgroundColor: darkMode ? 'white' : 'black',
             opacity: (index / trail.length) * 0.3,
             transition: 'width 0.2s, height 0.2s',
           }}
         />
       ))}
+
 
       {/* Main cursor - The Inverse Viewfinder */}
       <div
@@ -80,14 +81,14 @@ export function CustomCursor({ darkMode }: CustomCursorProps) {
           width: isHovering ? '48px' : '24px',
           height: isHovering ? '48px' : '24px',
           transform: 'translate(-50%, -50%)',
-          mixBlendMode: 'difference',
+          mixBlendMode: darkMode ? 'difference' : 'normal',
           borderColor: darkMode ? 'white' : 'black',
         }}
       >
         {/* Crosshair */}
         <div
           className="absolute inset-0 flex items-center justify-center"
-          style={{ mixBlendMode: 'difference' }}
+          style={{ mixBlendMode: darkMode ? 'difference' : 'normal' }}
         >
           <div
             className="absolute w-px h-3"

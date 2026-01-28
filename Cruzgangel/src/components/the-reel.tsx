@@ -111,33 +111,25 @@ export function TheReel({ darkMode }: TheReelProps) {
           </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="mt-24 md:mt-32"
-        >
-          <p className="text-xs md:text-sm tracking-[0.3em] max-w-2xl mx-auto px-4">
-            ARTE TECH-NOIR / MINIMALISMO BRUTALISTA
-          </p>
-          <div className="mt-8 flex justify-center gap-4">
-            <div className="w-12 h-px bg-current opacity-30" />
-            <div className="w-24 h-px bg-current opacity-60" />
-            <div className="w-12 h-px bg-current opacity-30" />
-          </div>
-        </motion.div>
+        {/* Agrupamos DESPLAZAR y ARTE TECH-NOIR secuencialmente */}
+        <div className="flex flex-col items-center mt-8 md:mt-10">
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2"
-        >
-          <div className="flex flex-col items-center gap-2">
-            <span className="text-xs tracking-[0.3em]">DESPLAZAR</span>
-            <div className="w-px h-12 bg-current animate-pulse" />
-          </div>
-        </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2, duration: 0.8 }}
+          >
+            <p className="text-xs md:text-sm tracking-[0.3em] max-w-2xl mx-auto px-4">
+              ARTE TECH-NOIR / MINIMALISMO BRUTALISTA
+            </p>
+            <div className="mt-8 flex justify-center gap-4 mb-10">
+              <div className="w-12 h-px bg-current opacity-30" />
+              <div className="w-24 h-px bg-current opacity-60" />
+              <div className="w-12 h-px bg-current opacity-30" />
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

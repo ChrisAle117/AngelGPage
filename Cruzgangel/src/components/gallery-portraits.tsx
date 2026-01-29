@@ -1,46 +1,21 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { X } from 'lucide-react';
+import { ProjectItem } from '../lib/types';
 
 interface GalleryPortraitsProps {
   darkMode: boolean;
+  data?: ProjectItem[];
 }
 
-const portraits = [
-  {
-    url: 'https://images.unsplash.com/photo-1658525914952-c02cbe697dc8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxibGFjayUyMHdoaXRlJTIwcG9ydHJhaXQlMjBwaG90b2dyYXBoeXxlbnwxfHx8fDE3Njk0ODk1MTl8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    title: 'RETRATO 01',
-    category: 'ESTUDIO'
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1643904524951-2a3a58856745?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxibGFjayUyMHdoaXRlJTIwYXJ0aXN0aWMlMjBwb3J0cmFpdHxlbnwxfHx8fDE3Njk1Mjk5ODJ8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    title: 'RETRATO 02',
-    category: 'ARTÍSTICO'
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1746733706320-bc3b55dfcd57?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb25vY2hyb21lJTIwcG9ydHJhaXQlMjBzdHVkaW98ZW58MXx8fHwxNzY5NTMwNDk0fDA&ixlib=rb-4.1.0&q=80&w=1080',
-    title: 'RETRATO 03',
-    category: 'ESTUDIO'
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1675430663473-8f82a1fca63b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb25vY2hyb21lJTIwZHJhbWF0aWMlMjBwb3J0cmFpdHxlbnwxfHx8fDE3Njk1MzA0OTd8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    title: 'RETRATO 04',
-    category: 'DRAMÁTICO'
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1652985808809-08b53267628b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxub2lyJTIwZmFzaGlvbiUyMHBob3RvZ3JhcGh5fGVufDF8fHx8MTc2OTUyOTk4MXww&ixlib=rb-4.1.0&q=80&w=1080',
-    title: 'RETRATO 05',
-    category: 'MODA'
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1637536701369-f815af927b59?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxibGFjayUyMHdoaXRlJTIwZWRpdG9yaWFsJTIwZmFzaGlvbnxlbnwxfHx8fDE3Njk1MzA0OTV8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    title: 'RETRATO 06',
-    category: 'EDITORIAL'
-  },
-];
-
-export function GalleryPortraits({ darkMode }: GalleryPortraitsProps) {
+export function GalleryPortraits({ darkMode, data = [] }: GalleryPortraitsProps) {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  // Use data from props if available, otherwise empty array
+  const portraits = data.length > 0 ? data : [];
+
+  if (portraits.length === 0) return null;
 
   return (
     <section className="min-h-screen py-24 md:py-32 px-4 md:px-8 relative">
@@ -65,32 +40,45 @@ export function GalleryPortraits({ darkMode }: GalleryPortraitsProps) {
           {portraits.map((portrait, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05, duration: 0.6 }}
+              viewport={{ once: true, margin: "100px" }}
+              transition={{ delay: index * 0.05, duration: 0.5 }}
               className="relative aspect-[3/4] overflow-hidden border border-current border-opacity-10 group cursor-pointer"
               onClick={() => setSelectedImage(index)}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
               data-hover
+              style={{ willChange: 'transform, opacity' }}
             >
               <img
-                src={portrait.url}
-                alt={portrait.title}
+                src={portrait.media_url}
+                alt={portrait.titulo}
                 className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-105"
+                decoding="async"
                 style={{
-                  filter: 'grayscale(1) contrast(1.15)',
-                  mixBlendMode: darkMode ? 'lighten' : 'darken',
+                  filter: hoveredIndex === index
+                    ? 'grayscale(0) contrast(1.1)'
+                    : 'grayscale(1) contrast(1.15)',
+                  // Solo aplicamos mix-blend-mode si es necesario para reducir carga en scroll
+                  mixBlendMode: (hoveredIndex === index) ? (darkMode ? 'lighten' : 'darken') : 'normal',
                 }}
               />
-              
+
               <div className="absolute inset-0 bg-current opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
-              
+
               <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                <div className="text-xs tracking-[0.2em] font-bold mb-1">
-                  {portrait.title}
+                <div
+                  className="text-xs tracking-[0.2em] font-bold mb-1"
+                  style={{ mixBlendMode: 'difference' }}
+                >
+                  {portrait.titulo}
                 </div>
-                <div className="text-xs tracking-[0.2em] opacity-60">
-                  {portrait.category}
+                <div
+                  className="text-xs tracking-[0.2em] opacity-60"
+                  style={{ mixBlendMode: 'difference' }}
+                >
+                  {portrait.seccion}
                 </div>
               </div>
             </motion.div>
@@ -114,22 +102,22 @@ export function GalleryPortraits({ darkMode }: GalleryPortraitsProps) {
           >
             <X size={32} />
           </button>
-          
+
           <motion.img
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
-            src={portraits[selectedImage].url}
-            alt={portraits[selectedImage].title}
+            src={portraits[selectedImage].media_url}
+            alt={portraits[selectedImage].titulo}
             className="max-w-full max-h-[90vh] object-contain grayscale"
             style={{ filter: 'grayscale(1) contrast(1.2)' }}
           />
-          
+
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
             <div className="text-lg tracking-[0.3em] font-bold mb-2">
-              {portraits[selectedImage].title}
+              {portraits[selectedImage].titulo}
             </div>
             <div className="text-sm tracking-[0.2em] opacity-60">
-              {portraits[selectedImage].category}
+              {portraits[selectedImage].seccion}
             </div>
           </div>
         </motion.div>

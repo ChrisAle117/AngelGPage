@@ -92,6 +92,14 @@ export function Navigation({ darkMode, setDarkMode }: NavigationProps) {
             <span className="absolute -bottom-1 left-0 w-0 h-px bg-current transition-all duration-300 group-hover:w-full" />
           </button>
           <button
+            onClick={() => scrollToSection('team')}
+            className="group relative text-xs md:text-sm tracking-[0.2em] hidden md:block"
+            data-hover
+          >
+            <span className="opacity-60 group-hover:opacity-100 transition-opacity duration-300">EQUIPO</span>
+            <span className="absolute -bottom-1 left-0 w-0 h-px bg-current transition-all duration-300 group-hover:w-full" />
+          </button>
+          <button
             onClick={() => scrollToSection('contact')}
             className="group relative text-xs md:text-sm tracking-[0.2em]"
             data-hover

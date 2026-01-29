@@ -7,17 +7,79 @@ import { GalleryUrban } from './components/gallery-urban';
 import { GalleryCinematic } from './components/gallery-cinematic';
 import { VideoShowcase } from './components/video-showcase';
 import { Lab } from './components/lab';
+import { TeamEquipment } from './components/team-equipment';
 import { Contact } from './components/contact';
 import { Navigation } from './components/navigation';
+import { fetchPortfolioData } from './lib/sheets';
+import { PortfolioData } from './lib/types';
+
+const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQFvTdII0q1BnfVdzuNMOugCE6fKbMSHxL6r8cv9XMBBIyRES-0bsUpWXt_QAUvTBi6g-havF6gPjBI/pub?output=csv';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(true);
   const [loading, setLoading] = useState(true);
+  const [portfolioData, setPortfolioData] = useState<PortfolioData>({});
 
   useEffect(() => {
-    // Simulate initial load with chalk blueprint effect
-    const timer = setTimeout(() => setLoading(false), 2000);
-    return () => clearTimeout(timer);
+    let scrollingTimeout: NodeJS.Timeout;
+    const handleScroll = () => {
+      document.body.classList.add('is-scrolling');
+      clearTimeout(scrollingTimeout);
+      scrollingTimeout = setTimeout(() => {
+        document.body.classList.remove('is-scrolling');
+      }, 150);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    const loadData = async () => {
+      try {
+        if (SHEET_URL && SHEET_URL.includes('docs.google.com')) {
+          const data = await fetchPortfolioData(SHEET_URL);
+          setPortfolioData(data);
+
+          // Get all photo URLs
+          const allUrls: string[] = [];
+          Object.values(data).forEach(section => {
+            section.forEach(item => {
+              if (item.media_url && item.type === 'image') {
+                allUrls.push(item.media_url);
+              }
+            });
+          });
+
+          // Preload and Decode (Ensures they are ready to paint)
+          const preloadPromises = allUrls.map(url => {
+            return new Promise((resolve) => {
+              const img = new Image();
+              // .decode() ensures the browser has decompressed the image
+              if ('decode' in img && typeof img.decode === 'function') {
+                img.src = url;
+                img.decode().then(resolve).catch(resolve);
+              } else {
+                img.onload = resolve;
+                img.onerror = resolve;
+                img.src = url;
+              }
+            });
+          });
+
+          await Promise.all(preloadPromises);
+        }
+      } catch (error) {
+        console.error("Error loading portfolio data:", error);
+      } finally {
+        // Wait a bit more to ensure everything is stable
+        setTimeout(() => setLoading(false), 1200);
+      }
+    };
+
+    loadData();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollingTimeout);
+    };
   }, []);
 
   return (
@@ -54,12 +116,17 @@ export default function App() {
       ) : (
         <>
           <TheReel darkMode={darkMode} />
-          <Visuals darkMode={darkMode} />
-          <GalleryPortraits darkMode={darkMode} />
-          <GalleryUrban darkMode={darkMode} />
-          <VideoShowcase darkMode={darkMode} />
-          <GalleryCinematic darkMode={darkMode} />
+          <Visuals darkMode={darkMode} data={portfolioData['Visuales']} />
+          <GalleryPortraits darkMode={darkMode} data={portfolioData['Retratos']} />
+          <GalleryUrban darkMode={darkMode} data={portfolioData['Urbano']} />
+          <VideoShowcase darkMode={darkMode} data={portfolioData['Video']} />
+          <GalleryCinematic darkMode={darkMode} data={portfolioData['Cinematic']} />
           <Lab darkMode={darkMode} />
+          <TeamEquipment
+            darkMode={darkMode}
+            teamData={portfolioData['Equipo']}
+            gearData={portfolioData['Specs']}
+          />
           <Contact darkMode={darkMode} />
         </>
       )}

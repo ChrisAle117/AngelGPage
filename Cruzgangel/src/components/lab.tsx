@@ -72,14 +72,14 @@ export function Lab({ darkMode }: LabProps) {
               initial={{ opacity: 0, scale: 0, rotate: 0 }}
               whileInView={{ opacity: 1, scale: 1, rotate: sticker.rotation }}
               viewport={{ once: true }}
-              transition={{ 
-                delay: index * 0.15, 
+              transition={{
+                delay: index * 0.15,
                 duration: 0.6,
                 type: 'spring',
                 stiffness: 200
               }}
-              whileHover={{ 
-                scale: 1.1, 
+              whileHover={{
+                scale: 1.1,
                 rotate: sticker.rotation + 5,
                 zIndex: 50
               }}
@@ -89,7 +89,7 @@ export function Lab({ darkMode }: LabProps) {
               }}
               data-hover
             >
-              <div 
+              <div
                 className="relative px-6 py-4 border-2 border-current backdrop-blur-sm"
                 style={{
                   backgroundColor: darkMode ? 'rgba(0,0,0,0.8)' : 'rgba(255,255,255,0.8)',
@@ -103,13 +103,13 @@ export function Lab({ darkMode }: LabProps) {
                     {sticker.text}
                   </span>
                 </div>
-                
+
                 {/* Torn paper effect simulation with decorative lines */}
-                <div 
+                <div
                   className="absolute -top-1 left-0 right-0 h-1"
                   style={{
-                    background: darkMode 
-                      ? 'linear-gradient(90deg, transparent 0%, transparent 10%, black 10%, black 20%, transparent 20%, transparent 30%, black 30%, black 35%, transparent 35%)' 
+                    background: darkMode
+                      ? 'linear-gradient(90deg, transparent 0%, transparent 10%, black 10%, black 20%, transparent 20%, transparent 30%, black 30%, black 35%, transparent 35%)'
                       : 'linear-gradient(90deg, transparent 0%, transparent 10%, white 10%, white 20%, transparent 20%, transparent 30%, white 30%, white 35%, transparent 35%)',
                   }}
                 />
@@ -136,7 +136,7 @@ export function Lab({ darkMode }: LabProps) {
                 DONDE LA TÉCNICA ENCUENTRA LA REBELDÍA /<br />
                 EMPUJANDO LÍMITES / ROMPIENDO REGLAS
               </p>
-              
+
               <div className="mt-12 flex justify-center gap-8">
                 <div className="text-center">
                   <div className="text-3xl font-bold mb-2">500+</div>

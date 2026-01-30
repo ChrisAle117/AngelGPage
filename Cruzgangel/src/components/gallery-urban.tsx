@@ -26,7 +26,7 @@ export function GalleryUrban({ darkMode, data = [] }: GalleryUrbanProps) {
             URBANO
           </h2>
           <div className="w-24 h-px bg-current opacity-30" />
-          <p className="mt-6 text-sm tracking-[0.2em] opacity-60">
+          <p className="mt-6 text-sm tracking-[0.2em] opacity-80">
             JUNGLA DE CONCRETO / HISTORIAS CALLEJERAS / LÍNEAS ARQUITECTÓNICAS
           </p>
         </motion.div>

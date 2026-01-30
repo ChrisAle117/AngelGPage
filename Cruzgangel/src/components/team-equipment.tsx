@@ -54,7 +54,7 @@ export function Team({ darkMode, data = [] }: TeamProps) {
                         NUESTRO EQUIPO
                     </h2>
                     <div className="w-24 h-px bg-current opacity-30" />
-                    <p className="mt-8 text-sm tracking-[0.2em] opacity-60 max-w-2xl uppercase" style={{ fontFamily: "'Quicksand', sans-serif" }}>
+                    <p className="mt-8 text-sm tracking-[0.2em] opacity-80 max-w-2xl uppercase" style={{ fontFamily: "'Quicksand', sans-serif" }}>
                         EL TALENTO HUMANO DETRÁS DE CADA TOMA Y LA VISIÓN QUE NOS ACOPLA.
                     </p>
                 </motion.div>
@@ -97,7 +97,7 @@ export function Team({ darkMode, data = [] }: TeamProps) {
                                                 </div>
                                             </div>
                                             <h3 className="text-sm font-bold tracking-[0.3em] mb-1 uppercase" style={{ fontFamily: "'League Spartan', sans-serif" }}>{member.titulo}</h3>
-                                            <p className="text-[10px] tracking-[0.3em] opacity-40 uppercase" style={{ fontFamily: "'Quicksand', sans-serif" }}>{role}</p>
+                                            <p className="text-[10px] tracking-[0.3em] opacity-70 uppercase" style={{ fontFamily: "'Quicksand', sans-serif" }}>{role}</p>
                                         </motion.div>
                                     </div>
                                 );
@@ -109,6 +109,7 @@ export function Team({ darkMode, data = [] }: TeamProps) {
                         onClick={scrollPrev}
                         className="absolute -left-4 md:-left-12 top-1/2 -translate-y-1/2 w-10 h-10 border border-current border-opacity-20 flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300 bg-background/50 backdrop-blur-sm z-10"
                         data-hover
+                        aria-label="Anterior"
                     >
                         <ChevronLeft size={20} />
                     </button>
@@ -116,6 +117,7 @@ export function Team({ darkMode, data = [] }: TeamProps) {
                         onClick={scrollNext}
                         className="absolute -right-4 md:-right-12 top-1/2 -translate-y-1/2 w-10 h-10 border border-current border-opacity-20 flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300 bg-background/50 backdrop-blur-sm z-10"
                         data-hover
+                        aria-label="Siguiente"
                     >
                         <ChevronRight size={20} />
                     </button>
@@ -142,7 +144,7 @@ export function EquipmentSpecs({ darkMode, data = [] }: { darkMode: boolean, dat
                         SPECS
                     </h2>
                     <div className="w-24 h-px bg-current opacity-30" />
-                    <p className="mt-8 text-sm tracking-[0.2em] opacity-60 max-w-2xl uppercase" style={{ fontFamily: "'Quicksand', sans-serif" }}>
+                    <p className="mt-8 text-sm tracking-[0.2em] opacity-80 max-w-2xl uppercase" style={{ fontFamily: "'Quicksand', sans-serif" }}>
                         TECNOLOGÍA DE VANGUARDIA QUE HACEN POSIBLE LO IMPOSIBLE.
                     </p>
                 </motion.div>
@@ -194,7 +196,7 @@ export function EquipmentSpecs({ darkMode, data = [] }: { darkMode: boolean, dat
 
                                     <ul className="space-y-3">
                                         {specs.map((spec, sIdx) => (
-                                            <li key={sIdx} className="flex items-start gap-3 text-[10px] tracking-[0.2em] opacity-50 leading-relaxed font-medium uppercase" style={{ fontFamily: "'Quicksand', sans-serif" }}>
+                                            <li key={sIdx} className="flex items-start gap-3 text-[10px] tracking-[0.2em] opacity-70 leading-relaxed font-medium uppercase" style={{ fontFamily: "'Quicksand', sans-serif" }}>
                                                 <div className="w-1 h-1 bg-current opacity-30 rounded-full mt-1.5" />
                                                 <span>{spec}</span>
                                             </li>

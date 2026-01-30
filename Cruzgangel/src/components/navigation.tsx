@@ -51,6 +51,7 @@ export function Navigation({ darkMode, setDarkMode }: NavigationProps) {
             onClick={() => scrollToSection('reel')}
             className="group relative overflow-hidden flex flex-col items-start md:flex-row md:items-baseline gap-0 md:gap-2 text-left"
             data-hover
+            aria-label="Volver al inicio"
           >
             <span
               className="text-xl md:text-2xl tracking-[0.3em] inline-block transition-transform duration-300 group-hover:scale-110"

@@ -70,7 +70,7 @@ export function GalleryCinematic({ darkMode, data = [] }: GalleryCinematicProps)
 
 
           <div className="w-24 h-px bg-current opacity-30" />
-          <p className="mt-6 text-sm tracking-[0.2em] opacity-60">
+          <p className="mt-6 text-sm tracking-[0.2em] opacity-80">
             NARRATIVA A TRAVÉS DE LA LUZ / COMPOSICIONES DRAMÁTICAS
           </p>
 

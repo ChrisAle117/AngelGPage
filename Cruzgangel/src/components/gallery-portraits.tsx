@@ -31,7 +31,7 @@ export function GalleryPortraits({ darkMode, data = [] }: GalleryPortraitsProps)
             RETRATOS
           </h2>
           <div className="w-24 h-px bg-current opacity-30" />
-          <p className="mt-6 text-sm tracking-[0.2em] opacity-60">
+          <p className="mt-6 text-sm tracking-[0.2em] opacity-80">
             CAPTURANDO LA ESENCIA / EMOCIÓN HUMANA
           </p>
         </motion.div>
@@ -75,7 +75,7 @@ export function GalleryPortraits({ darkMode, data = [] }: GalleryPortraitsProps)
                   {portrait.titulo}
                 </div>
                 <div
-                  className="text-xs tracking-[0.2em] opacity-60"
+                  className="text-xs tracking-[0.2em] opacity-80"
                   style={{ mixBlendMode: 'difference' }}
                 >
                   {portrait.seccion}
@@ -99,6 +99,7 @@ export function GalleryPortraits({ darkMode, data = [] }: GalleryPortraitsProps)
             className="absolute top-8 right-8 p-2 hover:opacity-60 transition-opacity"
             onClick={() => setSelectedImage(null)}
             data-hover
+            aria-label="Cerrar galería"
           >
             <X size={32} />
           </button>
@@ -116,7 +117,7 @@ export function GalleryPortraits({ darkMode, data = [] }: GalleryPortraitsProps)
             <div className="text-lg tracking-[0.3em] font-bold mb-2">
               {portraits[selectedImage].titulo}
             </div>
-            <div className="text-sm tracking-[0.2em] opacity-60">
+            <div className="text-sm tracking-[0.2em] opacity-80">
               {portraits[selectedImage].seccion}
             </div>
           </div>

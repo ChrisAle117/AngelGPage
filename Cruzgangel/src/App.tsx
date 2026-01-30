@@ -114,7 +114,7 @@ export default function App() {
           </div>
         </div>
       ) : (
-        <>
+        <main>
           <TheReel darkMode={darkMode} />
           <Visuals darkMode={darkMode} data={portfolioData['Visuales']} />
           <GalleryPortraits darkMode={darkMode} data={portfolioData['Retratos']} />
@@ -128,7 +128,7 @@ export default function App() {
             gearData={portfolioData['Specs']}
           />
           <Contact darkMode={darkMode} />
-        </>
+        </main>
       )}
 
       <style>{`

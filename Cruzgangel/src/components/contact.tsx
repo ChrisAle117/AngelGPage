@@ -208,7 +208,7 @@ export function Contact({ darkMode }: ContactProps) {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-xs tracking-[0.2em] mb-2 opacity-60">
+                <label className="block text-xs tracking-[0.2em] mb-2 opacity-80">
                   NOMBRE
                 </label>
                 <input
@@ -221,7 +221,7 @@ export function Contact({ darkMode }: ContactProps) {
               </div>
 
               <div>
-                <label className="block text-xs tracking-[0.2em] mb-2 opacity-60">
+                <label className="block text-xs tracking-[0.2em] mb-2 opacity-80">
                   EMAIL
                 </label>
                 <input
@@ -234,7 +234,7 @@ export function Contact({ darkMode }: ContactProps) {
               </div>
 
               <div>
-                <label className="block text-xs tracking-[0.2em] mb-2 opacity-60">
+                <label className="block text-xs tracking-[0.2em] mb-2 opacity-80">
                   MENSAJE
                 </label>
                 <textarea
@@ -325,7 +325,7 @@ export function Contact({ darkMode }: ContactProps) {
           transition={{ delay: 0.5, duration: 1 }}
           className="mt-24 pt-12 border-t border-current border-opacity-20 text-center"
         >
-          <p className="text-xs tracking-[0.3em] opacity-40">
+          <p className="text-xs tracking-[0.3em] opacity-80">
             CRUZGPHOTOGRAPHY / Productor cinematográfico / {new Date().getFullYear()}
           </p>
           <div className="mt-6 flex justify-center gap-4">

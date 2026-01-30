@@ -24,6 +24,15 @@ Una colección de trabajos audiovisuales que complementan la narrativa fotográf
 ### 🧪 Lab
 Un espacio experimental donde se exploran nuevas ideas y conceptos creativos.
 
+###👥Equipo
+
+Una coleccion para mostrar a nuestro equipo de trabajo y sus roles
+
+### 📸 Especificaciones
+
+Un espacio en el cual mostramos nuestras herramientas de trabajo
+
+
 ### 📧 Contacto
 Información para conectar y colaborar en nuevos proyectos.
 

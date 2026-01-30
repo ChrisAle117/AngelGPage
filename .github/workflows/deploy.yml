@@ -36,6 +36,11 @@ jobs:
         working-directory: ./Cruzgangel
         run: npm run build
         
+      # ⬇️ NUEVO PASO: Elimina cualquier archivo CNAME que pueda existir
+      - name: Remove CNAME file
+        working-directory: ./Cruzgangel
+        run: rm -f dist/CNAME
+        
       - name: Setup Pages
         uses: actions/configure-pages@v4
         

@@ -63,13 +63,18 @@ export function GalleryCinematic({ darkMode, data = [] }: GalleryCinematicProps)
           transition={{ duration: 0.8 }}
           className="mb-16"
         >
+
           <h2 className="text-4xl md:text-6xl font-bold tracking-[0.2em] mb-4">
-            CINEMATOGRÁFICO
+            CINEMATOGRAFÍA
           </h2>
+
+
           <div className="w-24 h-px bg-current opacity-30" />
           <p className="mt-6 text-sm tracking-[0.2em] opacity-60">
             NARRATIVA A TRAVÉS DE LA LUZ / COMPOSICIONES DRAMÁTICAS
           </p>
+
+
         </motion.div>
 
         {/* Infinite scroll gallery */}

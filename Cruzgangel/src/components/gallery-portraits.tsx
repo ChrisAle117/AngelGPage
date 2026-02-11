@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import { X } from 'lucide-react';
 import { ProjectItem } from '../lib/types';
+import { ImageWithFallback } from './ui/ImageWithFallback';
 
 interface GalleryPortraitsProps {
   darkMode: boolean;
@@ -51,9 +52,10 @@ export function GalleryPortraits({ darkMode, data = [] }: GalleryPortraitsProps)
               data-hover
               style={{ willChange: 'transform, opacity' }}
             >
-              <img
+              <ImageWithFallback
                 src={portrait.media_url}
                 alt={portrait.titulo}
+                darkMode={darkMode}
                 className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-105"
                 decoding="async"
                 style={{

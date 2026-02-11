@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 import { ProjectItem } from '../lib/types';
+import { ImageWithFallback } from './ui/ImageWithFallback';
 
 interface GalleryCinematicProps {
   darkMode: boolean;
@@ -98,9 +99,10 @@ export function GalleryCinematic({ darkMode, data = [] }: GalleryCinematicProps)
                   style={{ width: '400px', height: '500px', flexShrink: 0, willChange: 'transform, opacity' }}
                 >
                   <div className="relative w-full h-full overflow-hidden border-2 border-current border-opacity-20 group-hover:border-opacity-100 transition-all duration-500">
-                    <img
+                    <ImageWithFallback
                       src={photo.media_url}
                       alt={photo.titulo}
+                      darkMode={darkMode}
                       className="w-full h-full object-cover grayscale"
                       decoding="async"
                       style={{

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { ProjectItem } from '../lib/types';
+import { ImageWithFallback } from './ui/ImageWithFallback';
 
 interface GalleryUrbanProps {
   darkMode: boolean;
@@ -54,9 +55,10 @@ export function GalleryUrban({ darkMode, data = [] }: GalleryUrbanProps) {
                 data-hover
                 style={{ willChange: 'transform, opacity' }}
               >
-                <img
+                <ImageWithFallback
                   src={photo.media_url}
                   alt={photo.titulo}
+                  darkMode={darkMode}
                   className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-110"
                   decoding="async"
                   style={{

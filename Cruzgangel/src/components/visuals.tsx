@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { ProjectItem } from '../lib/types';
+import { ImageWithFallback } from './ui/ImageWithFallback';
 
 interface VisualsProps {
   darkMode: boolean;
@@ -53,9 +54,10 @@ export function Visuals({ darkMode, data = [] }: VisualsProps) {
                 style={{ willChange: 'transform, opacity' }}
               >
                 <div className="relative aspect-square md:aspect-auto md:h-full">
-                  <img
+                  <ImageWithFallback
                     src={photo.media_url}
                     alt={photo.titulo}
+                    darkMode={darkMode}
                     className="w-full h-full object-cover grayscale transition-all duration-700"
                     decoding="async"
                     style={{

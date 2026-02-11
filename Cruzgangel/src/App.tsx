@@ -82,6 +82,18 @@ export default function App() {
     };
   }, []);
 
+  useEffect(() => {
+    // Update document class for Tailwind dark mode
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
+    // Update body background to prevent white flashes on overscroll
+    document.body.style.backgroundColor = darkMode ? 'black' : '#F5F5F5';
+  }, [darkMode]);
+
   return (
     <div className={`relative min-h-screen w-full overflow-x-hidden ${darkMode ? 'bg-black text-white' : 'bg-[#F5F5F5] text-black'} transition-colors duration-500`}>
       <CustomCursor darkMode={darkMode} />

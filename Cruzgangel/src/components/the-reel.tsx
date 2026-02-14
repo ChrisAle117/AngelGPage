@@ -15,11 +15,12 @@ export function TheReel({ darkMode }: TheReelProps) {
       className={`relative min-h-screen flex items-center justify-center overflow-hidden transition-colors duration-500 ${darkMode ? 'bg-black' : 'bg-[#F5F5F5]'}`}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
+      data-cursor-target
     >
       {/* R3F Advanced Particle System */}
       <GL hovering={isHovering} darkMode={darkMode} />
 
-      <div className="relative z-20 text-center flex flex-col items-center pointer-events-none">
+      <div className="relative z-20 text-center flex flex-col items-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -28,6 +29,7 @@ export function TheReel({ darkMode }: TheReelProps) {
           <h1
             className={`text-[15vw] md:text-[12vw] tracking-[0.2em] leading-none -mb-4 md:-mb-10 relative transition-colors duration-500 ${darkMode ? 'text-white' : 'text-black'}`}
             style={{ fontFamily: "'League Spartan', sans-serif", fontWeight: 600 }}
+            data-cursor-target
           >
             CRUZG
           </h1>
@@ -41,6 +43,7 @@ export function TheReel({ darkMode }: TheReelProps) {
               color: 'transparent',
               paintOrder: 'stroke fill',
             }}
+            data-cursor-target
           >
             PHOTOGRAPHY
           </p>

@@ -41,7 +41,7 @@ export function Team({ darkMode, data = [] }: TeamProps) {
     if (data.length === 0) return null;
 
     return (
-        <section id="team" className="py-24 md:py-32 px-4 md:px-8 relative overflow-hidden">
+        <section id="team" className="py-24 md:py-32 px-4 md:px-8 relative overflow-hidden" data-cursor-target>
             <div className="max-w-7xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -69,7 +69,7 @@ export function Team({ darkMode, data = [] }: TeamProps) {
                                 const bio = parts[1] || '';
 
                                 return (
-                                    <div key={index} className="flex-[0_0_80%] sm:flex-[0_0_45%] lg:flex-[0_0_30%] min-w-0">
+                                    <div key={index} className="flex-[0_0_80%] sm:flex-[0_0_45%] lg:flex-[0_0_30%] min-w-0" data-cursor-target>
                                         <motion.div
                                             initial={{ opacity: 0, scale: 0.95 }}
                                             whileInView={{ opacity: 1, scale: 1 }}
@@ -79,11 +79,12 @@ export function Team({ darkMode, data = [] }: TeamProps) {
                                             onMouseLeave={() => setHoveredMember(null)}
                                             className="group relative w-full h-full"
                                         >
-                                            <div className="relative w-full aspect-[3/4] overflow-hidden border border-current border-opacity-10 mb-6 bg-neutral-900 flex items-center justify-center">
+                                                                                        <div className="relative w-full aspect-[3/4] overflow-hidden border border-current border-opacity-10 mb-6 bg-neutral-900 flex items-center justify-center" data-cursor-target>
                                                 <img
                                                     src={member.media_url}
                                                     alt={member.titulo}
                                                     className="w-full h-full object-cover grayscale transition-all duration-700"
+                                                                                                        data-cursor-target
                                                     style={{
                                                         filter: hoveredMember === index ? 'grayscale(0)' : 'grayscale(1)',
                                                         transform: hoveredMember === index ? 'scale(1.1)' : 'scale(1)',
@@ -131,7 +132,7 @@ export function EquipmentSpecs({ darkMode, data = [] }: { darkMode: boolean, dat
     if (data.length === 0) return null;
 
     return (
-        <section id="specs" className="py-24 md:py-32 px-4 md:px-8 relative overflow-hidden">
+        <section id="specs" className="py-24 md:py-32 px-4 md:px-8 relative overflow-hidden" data-cursor-target>
             <div className="max-w-7xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { CustomCursor } from './components/custom-cursor';
+import { TargetCursor } from './components/TargetCursor';
 import { TheReel } from './components/the-reel';
 import { Visuals } from './components/visuals';
 import { GalleryPortraits } from './components/gallery-portraits';
@@ -96,7 +96,7 @@ export default function App() {
 
   return (
     <div className={`relative min-h-screen w-full overflow-x-hidden ${darkMode ? 'bg-black text-white' : 'bg-[#F5F5F5] text-black'} transition-colors duration-500`}>
-      <CustomCursor darkMode={darkMode} />
+      <TargetCursor />
       <Navigation darkMode={darkMode} setDarkMode={setDarkMode} />
 
       {loading ? (
@@ -150,13 +150,6 @@ export default function App() {
           }
         }
         
-        body {
-          cursor: none;
-        }
-        
-        * {
-          cursor: none !important;
-        }
       `}</style>
 
       <svg width="0" height="0">

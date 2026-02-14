@@ -46,7 +46,7 @@ const stickers = [
 
 export function Lab({ darkMode }: LabProps) {
   return (
-    <section id="lab" className="min-h-screen py-24 md:py-32 px-4 md:px-8 relative overflow-hidden">
+    <section id="lab" className="min-h-screen py-24 md:py-32 px-4 md:px-8 relative overflow-hidden" data-cursor-target>
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

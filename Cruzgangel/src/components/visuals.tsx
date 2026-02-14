@@ -16,7 +16,7 @@ export function Visuals({ darkMode, data = [] }: VisualsProps) {
   if (photos.length === 0) return null;
 
   return (
-    <section id="visuals" className="min-h-screen py-24 md:py-32 px-4 md:px-8">
+    <section id="visuals" className="min-h-screen py-24 md:py-32 px-4 md:px-8" data-cursor-target>
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
